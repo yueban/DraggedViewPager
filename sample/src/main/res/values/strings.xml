@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DraggedViewPager</string>
+
+    <string name="action_add_page">add_page</string>
+    <string name="action_remove_page">remove_page</string>
+    <string name="action_swap_page">swap_page</string>
+    <string name="action_add_item">add_item</string>
+    <string name="action_remove_item">remove_item</string>
+    <string name="action_update_item">update_item</string>
+    <string name="action_move_item">move_item</string>
+</resources>

@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_add_page"
+        android:orderInCategory="10"
+        android:title="@string/action_add_page"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_remove_page"
+        android:orderInCategory="20"
+        android:title="@string/action_remove_page"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_swap_page"
+        android:orderInCategory="30"
+        android:title="@string/action_swap_page"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_add_item"
+        android:orderInCategory="40"
+        android:title="@string/action_add_item"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_remove_item"
+        android:orderInCategory="50"
+        android:title="@string/action_remove_item"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_update_item"
+        android:orderInCategory="60"
+        android:title="@string/action_update_item"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_move_item"
+        android:orderInCategory="70"
+        android:title="@string/action_move_item"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="page_edge_visible_width">36dp</dimen>
+    <dimen name="page_margin">8dp</dimen>
+    <dimen name="page_switch_speed">300dp</dimen>
+    <dimen name="page_switch_offset_x">40dp</dimen>
+</resources>
