@@ -10,29 +10,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bigfat.draggedviewpager.model.Page;
-import com.bigfat.draggedviewpager.utils.MDA_DragViewPagerController;
-import com.bigfat.draggedviewpager.utils.MDA_DragViewPagerListener;
-import com.bigfat.draggedviewpager.view.MDA_DragViewPager;
+import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
+import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
+import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
-    private MDA_DragViewPager dragViewPager;
-    private MDA_DragViewPagerController<Item> controller;
+    private MDA_DraggedViewPager draggedViewPager;
+    private MDA_DraggedViewPagerController<Item> controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dragViewPager = (MDA_DragViewPager) findViewById(R.id.scrollView);
+        draggedViewPager = (MDA_DraggedViewPager) findViewById(R.id.draggedViewPager);
         controller = new SimpleController(generatePageList(), R.layout.item);
-        dragViewPager.setController(controller);
-        dragViewPager.setItemMoveDelay(200);
-        dragViewPager.setPageSwapDelay(400);
-        dragViewPager.setDragViewPagerListener(new MDA_DragViewPagerListener() {
+        draggedViewPager.setController(controller);
+        draggedViewPager.setItemMoveDelay(200);
+        draggedViewPager.setPageSwapDelay(400);
+        draggedViewPager.setDraggedViewPagerListener(new MDA_DraggedViewPagerListener() {
             @Override
             public void onDragStarted() {
                 Log.i(TAG, "onDragStarted");
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         return itemList;
     }
 
-    private class SimpleController extends MDA_DragViewPagerController<Item> {
+    private class SimpleController extends MDA_DraggedViewPagerController<Item> {
         public SimpleController(ArrayList<Page<Item>> data, int itemLayoutRes) {
             super(data, itemLayoutRes);
         }

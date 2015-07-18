@@ -59,7 +59,7 @@ public class MDA_PageListLayout<T> extends LinearLayout {
     }
 
     public void bindItemData(View itemView, T t) {
-        getParentHorizontalScrollView().getController().bindItemData(itemView, t);
+        getDraggedViewPager().getController().bindItemData(itemView, t);
     }
 
     public ArrayList<T> getData() {
@@ -91,15 +91,15 @@ public class MDA_PageListLayout<T> extends LinearLayout {
         addView(itemView, position);
     }
 
-    public MDA_DragViewPager getParentHorizontalScrollView() {
-        return getParentHorizontalScrollView(this);
+    public MDA_DraggedViewPager getDraggedViewPager() {
+        return getDraggedViewPager(this);
     }
 
-    private MDA_DragViewPager getParentHorizontalScrollView(View view) {
-        if (view.getParent() instanceof MDA_DragViewPager) {
-            return (MDA_DragViewPager) view.getParent();
+    private MDA_DraggedViewPager getDraggedViewPager(View view) {
+        if (view.getParent() instanceof MDA_DraggedViewPager) {
+            return (MDA_DraggedViewPager) view.getParent();
         } else {
-            return getParentHorizontalScrollView((View) view.getParent());
+            return getDraggedViewPager((View) view.getParent());
         }
     }
 

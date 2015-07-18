@@ -3,7 +3,7 @@ package com.bigfat.draggedviewpager.utils;
 import android.view.View;
 
 import com.bigfat.draggedviewpager.model.Page;
-import com.bigfat.draggedviewpager.view.MDA_DragViewPager;
+import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,22 +11,22 @@ import java.util.Collections;
 /**
  * Created by yueban on 17/7/15.
  */
-public abstract class MDA_DragViewPagerController<T> {
-    private MDA_DragViewPager dragViewPager;
+public abstract class MDA_DraggedViewPagerController<T> {
+    private MDA_DraggedViewPager draggedViewPager;
     private ArrayList<Page<T>> data;
     private int itemLayoutRes;
 
-    public MDA_DragViewPagerController(ArrayList<Page<T>> data, int itemLayoutRes) {
+    public MDA_DraggedViewPagerController(ArrayList<Page<T>> data, int itemLayoutRes) {
         this.data = data;
         this.itemLayoutRes = itemLayoutRes;
     }
 
-    public MDA_DragViewPager getDragViewPager() {
-        return dragViewPager;
+    public MDA_DraggedViewPager getDraggedViewPager() {
+        return draggedViewPager;
     }
 
-    public void setDragViewPager(MDA_DragViewPager dragViewPager) {
-        this.dragViewPager = dragViewPager;
+    public void setDraggedViewPager(MDA_DraggedViewPager draggedViewPager) {
+        this.draggedViewPager = draggedViewPager;
     }
 
     public abstract void bindItemData(View itemView, T t);
@@ -121,6 +121,6 @@ public abstract class MDA_DragViewPagerController<T> {
     }
 
     private void refreshDragViewPager() {
-        dragViewPager.initView(this);
+        draggedViewPager.initView(this);
     }
 }

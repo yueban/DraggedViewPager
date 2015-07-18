@@ -1,6 +1,6 @@
 package com.bigfat.draggedviewpager.utils;
 
-public interface MDA_DragViewPagerListener {
+public interface MDA_DraggedViewPagerListener {
     /**
      * 拖拽开始
      */
