@@ -59,5 +59,3 @@ controller.removeItem(int pageIndex, int itemIndex);
 controller.updateItem(int pageIndex, int itemIndex, T item);
 controller.moveItem(int oldPageIndex, int oldItemIndex, int newPageIndex, int newItemIndex)
 ```
-
-url:https://github.com/yueban/DraggedViewPager
