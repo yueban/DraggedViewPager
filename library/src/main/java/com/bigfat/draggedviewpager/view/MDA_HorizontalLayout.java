@@ -35,7 +35,7 @@ public class MDA_HorizontalLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setPadding(DragUtils.pageMargin + DragUtils.pageEdgeVisibleWidth, 0, DragUtils.pageMargin + DragUtils.pageEdgeVisibleWidth, 0);
 
-        int pageWidth = DragUtils.screenWidth - DragUtils.pageMargin * 4 - DragUtils.pageEdgeVisibleWidth * 2;//每一页的宽度
+        int pageWidth = DragUtils.pageScrollWidth - DragUtils.pageMargin * 2;//每一页的宽度
 
         int width = 0;
         int height = 0;

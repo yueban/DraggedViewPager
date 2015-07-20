@@ -40,9 +40,9 @@ public class DragUtils {
      * 初始化拖拽事件
      *
      * @param draggedViewPager 最外层 {@link com.bigfat.draggedviewpager.view.MDA_DraggedViewPager}
-     * @param view          被初始化的View
-     * @param type          拖拽View类型 {@link DragViewType}
-     * @param listener      拖拽事件回调
+     * @param view             被初始化的View
+     * @param type             拖拽View类型 {@link DragViewType}
+     * @param listener         拖拽事件回调
      */
     public static void setupDragEvent(final MDA_DraggedViewPager draggedViewPager, View view, final DragViewType type, final MDA_DraggedViewPagerListener listener) {
         view.setOnDragListener(new View.OnDragListener() {
@@ -117,10 +117,18 @@ public class DragUtils {
 
                                             //拖拽到达列表边界时，令ScrollView滚动
                                             ScrollView svPage = (ScrollView) viewGroup.getParent();
-                                            if ((index + 2) * view.getHeight() > svPage.getHeight() + svPage.getScrollY()) {
-                                                svPage.smoothScrollBy(0, view.getHeight());
-                                            } else if (index * view.getHeight() < svPage.getScrollY()) {
-                                                svPage.smoothScrollBy(0, -view.getHeight());
+
+                                            ViewGroup.MarginLayoutParams itemParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                                            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams();
+                                            int itemHeight = view.getHeight() + itemParams.topMargin + itemParams.bottomMargin;
+                                            int listVisibleHeight = svPage.getHeight() - svPage.getPaddingTop() - svPage.getPaddingBottom()
+                                                    - viewGroup.getPaddingTop() - viewGroup.getPaddingBottom()
+                                                    - layoutParams.topMargin - layoutParams.bottomMargin;
+
+                                            if ((index + 2) * itemHeight > listVisibleHeight + svPage.getScrollY()) {
+                                                svPage.smoothScrollBy(0, itemHeight);
+                                            } else if (index * itemHeight < svPage.getScrollY()) {
+                                                svPage.smoothScrollBy(0, -itemHeight);
                                             }
 
                                             if (view != dragState.view) {//正在拖拽的item，则处理拖拽事件
@@ -345,7 +353,7 @@ public class DragUtils {
     /**
      * 获取拖拽触发的执行事件类型
      *
-     * @param draggedViewPager       最外层 {@link com.bigfat.draggedviewpager.view.MDA_DraggedViewPager}
+     * @param draggedViewPager 最外层 {@link com.bigfat.draggedviewpager.view.MDA_DraggedViewPager}
      * @param currentPageIndex 当前页索引
      * @param pageIndex        响应拖拽事件item所在页索引
      * @param view             响应拖拽事件的item

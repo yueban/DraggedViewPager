@@ -1,17 +1,11 @@
 # DraggedViewPager
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DraggedViewPager-green.svg?style=flat)](https://android-arsenal.com/details/1/2164)
+
 A View whose pages and items both can be dragged, looking like a ViewPager
-<img src="https://github.com/yueban/DraggedViewPager/raw/master/DraggedViewPager.gif" width=“300" alt="Screenshot"/>
+<img src="https://github.com/yueban/DraggedViewPager/raw/master/DraggedViewPager.gif" width="300" alt="Screenshot"/>
 
 ## Usage
 ###  Quick Start
-Define in xml
-``` xml
-<com.bigfat.draggedviewpager.view.MDA_DraggedViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/draggedViewPager"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
-```
-Setup Controller
 ``` java
 MDA_DraggedViewPagerController controller = new MDA_DraggedViewPagerController<Object>(itemLayoutRes) {
     @Override
