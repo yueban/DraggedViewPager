@@ -1,6 +1,7 @@
 package com.bigfat.draggedviewpager.view;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -50,11 +51,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
     }
 
     private void init() {
-        DragUtils.screenWidth = getResources().getDisplayMetrics().widthPixels;
-        DragUtils.screenHeight = getResources().getDisplayMetrics().heightPixels;
-        DragUtils.pageEdgeVisibleWidth =getResources().getDimensionPixelOffset(R.dimen.page_edge_visible_width);
-        DragUtils.pageMargin = getResources().getDimensionPixelOffset(R.dimen.page_margin);
-        DragUtils.pageScrollWidth = DragUtils.screenWidth - DragUtils.pageMargin * 2 - DragUtils.pageEdgeVisibleWidth * 2;
+        initMeasure();
 
         pageSwitchOffsetX = getResources().getDimensionPixelSize(R.dimen.page_switch_offset_x);
         pageSwitchSpeed = getResources().getDimensionPixelSize(R.dimen.page_switch_speed);
@@ -64,6 +61,20 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
         container = new MDA_HorizontalLayout(getContext());
         addView(container);
+    }
+
+    private void initMeasure() {
+        DragUtils.screenWidth = getResources().getDisplayMetrics().widthPixels;
+        DragUtils.screenHeight = getResources().getDisplayMetrics().heightPixels;
+        DragUtils.pageEdgeVisibleWidth =getResources().getDimensionPixelOffset(R.dimen.page_edge_visible_width);
+        DragUtils.pageMargin = getResources().getDimensionPixelOffset(R.dimen.page_margin);
+        DragUtils.pageScrollWidth = DragUtils.screenWidth - DragUtils.pageMargin * 2 - DragUtils.pageEdgeVisibleWidth * 2;
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initMeasure();
     }
 
     public ArrayList<Page> getData() {
