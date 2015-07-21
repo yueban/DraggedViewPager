@@ -54,4 +54,4 @@ controller.updateItem(int pageIndex, int itemIndex, T item);
 controller.moveItem(int oldPageIndex, int oldItemIndex, int newPageIndex, int newItemIndex)
 ```
 
-powered by [mingdao](https://www.mingdao.com)
+powered by [mingdao](http://www.mingdao.com/home)
