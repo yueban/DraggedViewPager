@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private MDA_DraggedViewPager draggedViewPager;
-    private MDA_DraggedViewPagerController<Section<Item>, Item> controller;
+    private MDA_DraggedViewPagerController<Section, Item> controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add_page:
-                controller.addPage(0, new Section<>(generateItemList("add-", 5), "add"));
+                controller.addPage(0, new Section("add", generateItemList("add-", 5)));
                 break;
 
             case R.id.action_remove_page:
@@ -95,18 +95,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<Section<Item>> generatePageList() {
-        List<Section<Item>> data = new ArrayList<>();
+    private List<Section> generatePageList() {
+        List<Section> data = new ArrayList<>();
 
-        data.add(new Section<>(generateItemList("1-", 20), "页面1"));
-        data.add(new Section<>(generateItemList("1-", 10), "页面2"));
-        data.add(new Section<>(generateItemList("1-", 35), "页面3"));
-        data.add(new Section<>(generateItemList("1-", 50), "页面4"));
+        data.add(new Section("页面1", generateItemList("1-", 20)));
+        data.add(new Section("页面2", generateItemList("1-", 10)));
+        data.add(new Section("页面3", generateItemList("1-", 35)));
+        data.add(new Section("页面4", generateItemList("1-", 50)));
 
         return data;
     }
 
-    private ArrayList<Item> generateItemList(String title, int size) {
+    private List<Item> generateItemList(String title, int size) {
         ArrayList<Item> itemList = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
@@ -117,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
         return itemList;
     }
 
-    private class SimpleController extends MDA_DraggedViewPagerController<Section<Item>, Item> {
-        public SimpleController(List<Section<Item>> data, int pageLayoutRes, int itemLayoutRes) {
+    private class SimpleController extends MDA_DraggedViewPagerController<Section, Item> {
+        public SimpleController(List<Section> data, int pageLayoutRes, int itemLayoutRes) {
             super(data, pageLayoutRes, itemLayoutRes);
         }
 
         @Override
-        public void bindPageData(View pageView, Section<Item> itemSection) {
+        public void bindPageData(View pageView, Section itemSection) {
             TextView tv = (TextView) pageView.findViewById(R.id.tv_item_section_title);
             tv.setText(itemSection.getTitle());
         }
