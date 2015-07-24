@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         draggedViewPager = (MDA_DraggedViewPager) findViewById(R.id.draggedViewPager);
-        controller = new SimpleController(generatePageList(), R.layout.item_page, R.layout.item);
+        controller = new SimpleController(generatePageList(), R.layout.item_section, R.layout.item);
         draggedViewPager.setController(controller);
         draggedViewPager.setItemMoveDelay(200);
         draggedViewPager.setPageSwapDelay(400);
@@ -108,10 +108,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Item> generateItemList(String title, int size) {
         ArrayList<Item> itemList = new ArrayList<>();
+
         for (int i = 0; i < size; i++) {
             Item item = new Item(R.mipmap.ic_launcher, title + i);
             itemList.add(item);
         }
+
         return itemList;
     }
 
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void bindPageData(View pageView, Section<Item> itemSection) {
-            TextView tv = (TextView) pageView.findViewById(R.id.tv_item_page_title);
+            TextView tv = (TextView) pageView.findViewById(R.id.tv_item_section_title);
             tv.setText(itemSection.getTitle());
         }
 

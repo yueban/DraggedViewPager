@@ -6,16 +6,30 @@ A View whose pages and items both can be dragged, looking like a ViewPager
 
 ## Usage
 ###  Quick Start
+```xml
+<!-- Define a ScrollView by id "@id/dvp_scroll_view" in your page layout -->
+    <ScrollView
+        android:id="@id/dvp_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+```
+
 ``` java
-MDA_DraggedViewPagerController controller = new MDA_DraggedViewPagerController<Object>(itemLayoutRes) {
+//init Controller
+MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> controller = new MDA_DraggedViewPagerController<>(List<T1> data,int pageLayoutRes, int itemLayoutRes) {
     @Override
-    public void bindItemData(View itemView, Object o) {
-        //bind data to itemView
+    public void bindPageData(View pageView, T1 t1) {
+	//bind page data...
+    }
+
+    @Override
+    public void bindItemData(View itemView, T2 t2) {
+	//bind item data...
     }
 };
+//set Controller
 draggedViewPager.setController(controller);
-draggedViewPager.setItemMoveDelay(200);//Default 300
-draggedViewPager.setPageSwapDelay(400);//Default 300
+//see sample for more detail
 ```
 
 ### Callback
