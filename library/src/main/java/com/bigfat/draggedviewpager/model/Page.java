@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Created by yueban on 13/7/15.
  */
 public abstract class Page<T> {
-    private String title;
     private ArrayList<T> data;
 
     public Page() {
