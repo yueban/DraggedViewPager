@@ -163,6 +163,11 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         }
     }
 
+    public MDA_PageListLayout getMDA_PageListLayout(int index) {
+        ViewGroup viewGroup = (ViewGroup) container.getChildAt(index);
+        return (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         measureChildren(widthMeasureSpec, heightMeasureSpec);

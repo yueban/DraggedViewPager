@@ -32,6 +32,7 @@ public class DragUtils {
     private static float dragTouchY;//拖拽点在item上的Y坐标
     private static Handler handler = new Handler();
     private static Runnable runnable = null;
+    private static boolean isAnim;//动画是否正在执行
 
     private DragUtils() {
     }
@@ -76,7 +77,7 @@ public class DragUtils {
                                                 //切换页
                                                 swapPageViews(viewGroup, PAGE_currentPageIndex - 1, dragState, listener);
                                             }
-                                        });
+                                        }, null);
                                         break;
 
                                     case SCROLL_NEXT://滚动到下一页
@@ -86,7 +87,7 @@ public class DragUtils {
                                                 //切换页
                                                 swapPageViews(viewGroup, PAGE_currentPageIndex + 1, dragState, listener);
                                             }
-                                        });
+                                        }, null);
                                         break;
 
                                     case DEFAULT://不满足页面切换条件，终止正在执行的事件
@@ -103,11 +104,21 @@ public class DragUtils {
 
                                 switch (getDragEventType(draggedViewPager, ITEM_currentPageIndex, ITEM_pageIndex, view, event)) {
                                     case SCROLL_PREVIOUS:
-                                        runnableScrollToPreviousPage(null);
+                                        runnableScrollToPreviousPage(null, new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager().getMDA_PageListLayout(ITEM_currentPageIndex - 1), 0, listener);
+                                            }
+                                        });
                                         break;
 
                                     case SCROLL_NEXT:
-                                        runnableScrollToNextPage(null);
+                                        runnableScrollToNextPage(null, new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager().getMDA_PageListLayout(ITEM_currentPageIndex + 1), 0, listener);
+                                            }
+                                        });
                                         break;
 
                                     case DEFAULT:
@@ -171,6 +182,9 @@ public class DragUtils {
              * @param delay 延迟时间
              */
             private void executeRunnable(Runnable task, int delay) {
+                if (isAnim) {
+                    return;
+                }
                 if (runnable != null) {
                     handler.removeCallbacks(runnable);
                 }
@@ -183,8 +197,9 @@ public class DragUtils {
             /**
              * 滚动到上一页
              * @param pageSwipeRunnable 执行页面交换操作的Runnable
+             * @param itemMoveRunnable 执行item移动的Runnable
              */
-            private void runnableScrollToPreviousPage(final Runnable pageSwipeRunnable) {
+            private void runnableScrollToPreviousPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToPreviousPage");
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
                     return;
@@ -198,6 +213,10 @@ public class DragUtils {
                             handler.postDelayed(pageSwipeRunnable, pageExchangeAnimatorDelay);
                         }
 
+                        if (itemMoveRunnable != null) {
+                            executeRunnable(itemMoveRunnable, itemMoveDelay);
+                        }
+
                         pageScrollRunnableFlag = 0;
                     }
                 }, pageSwapDelay);
@@ -207,10 +226,10 @@ public class DragUtils {
 
             /**
              * 滚动到下一页
-             *
              * @param pageSwipeRunnable 执行页面交换操作的Runnable
+             * @param itemMoveRunnable 执行item移动的Runnable
              */
-            private void runnableScrollToNextPage(final Runnable pageSwipeRunnable) {
+            private void runnableScrollToNextPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToNextPage");
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
                     return;
@@ -222,6 +241,10 @@ public class DragUtils {
 
                         if (pageSwipeRunnable != null) {
                             handler.postDelayed(pageSwipeRunnable, pageExchangeAnimatorDelay);
+                        }
+
+                        if (itemMoveRunnable != null) {
+                            executeRunnable(itemMoveRunnable, itemMoveDelay);
                         }
 
                         pageScrollRunnableFlag = 0;
