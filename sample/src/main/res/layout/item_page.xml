@@ -19,7 +19,7 @@
         tools:text="标题" />
 
     <ScrollView
-        android:id="@+id/sv_item_page"
+        android:id="@id/dvp_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:overScrollMode="never"

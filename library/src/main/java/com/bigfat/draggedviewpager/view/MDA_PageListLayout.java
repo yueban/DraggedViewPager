@@ -7,14 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by yueban on 16/7/15.
  */
 public class MDA_PageListLayout<T> extends LinearLayout {
     private int itemLayoutResId;
-    private ArrayList<T> data;
+    private List<T> data;
     private int dragPosition = -1;
     private int pageIndex;//页面索引
 
@@ -62,11 +62,11 @@ public class MDA_PageListLayout<T> extends LinearLayout {
         getDraggedViewPager().getController().bindItemData(itemView, t);
     }
 
-    public ArrayList<T> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(ArrayList<T> data) {
+    public void setData(List<T> data) {
         this.data = data;
         initView();
     }

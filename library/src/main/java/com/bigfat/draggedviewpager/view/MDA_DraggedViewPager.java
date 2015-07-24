@@ -9,15 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.bigfat.draggedviewpager.R;
-import com.bigfat.draggedviewpager.model.Page;
 import com.bigfat.draggedviewpager.utils.DragUtils;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -66,7 +64,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
     private void initMeasure() {
         DragUtils.screenWidth = getResources().getDisplayMetrics().widthPixels;
         DragUtils.screenHeight = getResources().getDisplayMetrics().heightPixels;
-        DragUtils.pageEdgeVisibleWidth =getResources().getDimensionPixelOffset(R.dimen.page_edge_visible_width);
+        DragUtils.pageEdgeVisibleWidth = getResources().getDimensionPixelOffset(R.dimen.page_edge_visible_width);
         DragUtils.pageMargin = getResources().getDimensionPixelOffset(R.dimen.page_margin);
         DragUtils.pageScrollWidth = DragUtils.screenWidth - DragUtils.pageMargin * 2 - DragUtils.pageEdgeVisibleWidth * 2;
     }
@@ -77,7 +75,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         initMeasure();
     }
 
-    public ArrayList<Page> getData() {
+    public List getData() {
         return controller.getData();
     }
 
@@ -85,11 +83,11 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         return controller;
     }
 
-    public <T> void setController(MDA_DraggedViewPagerController<T> controller) {
+    public void setController(MDA_DraggedViewPagerController controller) {
         this.controller = controller;
         controller.setDraggedViewPager(this);
 
-        initView(controller);
+        notifyDataSetChanged();
     }
 
     public void setDraggedViewPagerListener(MDA_DraggedViewPagerListener draggedViewPagerListener) {
@@ -114,26 +112,24 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         DragUtils.itemMoveDelay = itemMoveDelay;
     }
 
-    public <T> void initView(MDA_DraggedViewPagerController<T> controller) {
+    public void notifyDataSetChanged() {
         int currentPageIndex = currentPage;
 
         container.removeAllViews();
 
         for (int i = 0; i < controller.getData().size(); i++) {
-            View pageView = LayoutInflater.from(getContext()).inflate(R.layout.item_page, container, false);
-            //添加View
+            View pageView = LayoutInflater.from(getContext()).inflate(controller.getPageLayoutRes(), container, false);
+            //添加至主框架View
             container.addView(pageView);
-            TextView tvTitle = (TextView) pageView.findViewById(R.id.tv_item_page_title);
-            ScrollView scrollView = (ScrollView) pageView.findViewById(R.id.sv_item_page);
-            MDA_PageListLayout<T> pageListLayout = new MDA_PageListLayout<T>(getContext(), controller.getItemLayoutRes());
+            ScrollView scrollView = (ScrollView) pageView.findViewById(R.id.dvp_scroll_view);
+            MDA_PageListLayout pageListLayout = new MDA_PageListLayout(getContext(), controller.getItemLayoutRes());
             //添加View
             scrollView.addView(pageListLayout);
             //设置页面索引
             pageListLayout.setPageIndex(i);
+            controller.bindPageData(pageView, controller.getPage(i));
             //设置数据
-            Page<T> page = controller.getData().get(i);
-            tvTitle.setText(page.getTitle());
-            pageListLayout.setData(page.getData());
+            pageListLayout.setData(controller.getPage(i).getData());
         }
 
         initDragEvent(DragUtils.DragViewType.ALL);
@@ -155,7 +151,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
                 DragUtils.setupDragEvent(this, viewGroup, DragUtils.DragViewType.PAGE, draggedViewPagerListener);
             }
             //item拖拽绑定监听器
-            MDA_PageListLayout layout = (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.sv_item_page)).getChildAt(0);
+            MDA_PageListLayout layout = (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
             for (int j = 0; j < layout.getChildCount(); j++) {
                 View view = layout.getChildAt(j);
                 if (type == DragUtils.DragViewType.PAGE) {
@@ -300,9 +296,5 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     public int getCurrentPage() {
         return currentPage;
-    }
-
-    public interface OnPageSelectListener {
-        void onPageSelect(int currentPage);
     }
 }

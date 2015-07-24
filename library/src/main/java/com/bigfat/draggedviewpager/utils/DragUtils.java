@@ -310,8 +310,8 @@ public class DragUtils {
     private static void swapPageViews(ViewGroup viewGroup, int index,
                                       DragState dragState, MDA_DraggedViewPagerListener listener) {
         //交换页面索引
-        final MDA_PageListLayout pageListLayout = (MDA_PageListLayout) ((ViewGroup) viewGroup.getChildAt(index).findViewById(R.id.sv_item_page)).getChildAt(0);
-        MDA_PageListLayout dragPageListLayout = (MDA_PageListLayout) ((ViewGroup) dragState.view.findViewById(R.id.sv_item_page)).getChildAt(0);
+        final MDA_PageListLayout pageListLayout = (MDA_PageListLayout) ((ViewGroup) viewGroup.getChildAt(index).findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+        MDA_PageListLayout dragPageListLayout = (MDA_PageListLayout) ((ViewGroup) dragState.view.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
         int pageIndex = pageListLayout.getPageIndex();
         int dragPageIndex = dragPageListLayout.getPageIndex();
         pageListLayout.setPageIndex(dragPageIndex);

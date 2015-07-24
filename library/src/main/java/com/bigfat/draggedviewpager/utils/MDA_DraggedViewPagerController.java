@@ -5,19 +5,21 @@ import android.view.View;
 import com.bigfat.draggedviewpager.model.Page;
 import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by yueban on 17/7/15.
  */
-public abstract class MDA_DraggedViewPagerController<T> {
+public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
     private MDA_DraggedViewPager draggedViewPager;
-    private ArrayList<Page<T>> data;
+    private List<T1> data;
+    private int pageLayoutRes;
     private int itemLayoutRes;
 
-    public MDA_DraggedViewPagerController(ArrayList<Page<T>> data, int itemLayoutRes) {
+    public MDA_DraggedViewPagerController(List<T1> data,int pageLayoutRes, int itemLayoutRes) {
         this.data = data;
+        this.pageLayoutRes = pageLayoutRes;
         this.itemLayoutRes = itemLayoutRes;
     }
 
@@ -29,14 +31,28 @@ public abstract class MDA_DraggedViewPagerController<T> {
         this.draggedViewPager = draggedViewPager;
     }
 
-    public abstract void bindItemData(View itemView, T t);
+    public abstract void bindPageData(View pageView, T1 t1);
 
-    public ArrayList<Page<T>> getData() {
+    public abstract void bindItemData(View itemView, T2 t2);
+
+    public List<T1> getData() {
         return data;
+    }
+
+    public int getPageLayoutRes(){
+        return pageLayoutRes;
     }
 
     public int getItemLayoutRes() {
         return itemLayoutRes;
+    }
+
+    public T1 getPage(int pageIndex) {
+        return data.get(pageIndex);
+    }
+
+    public T2 getItem(int pageIndex, int itemIndex) {
+        return data.get(pageIndex).getData().get(itemIndex);
     }
 
     /**
@@ -54,10 +70,10 @@ public abstract class MDA_DraggedViewPagerController<T> {
      * 添加页
      *
      * @param pageIndex 添加页索引
-     * @param page      添加页
+     * @param t1      添加页
      */
-    public void addPage(int pageIndex, Page<T> page) {
-        data.add(pageIndex, page);
+    public void addPage(int pageIndex, T1 t1) {
+        data.add(pageIndex, t1);
         refreshDragViewPager();
     }
 
@@ -76,10 +92,10 @@ public abstract class MDA_DraggedViewPagerController<T> {
      *
      * @param pageIndex item添加页索引
      * @param itemIndex item添加位置索引
-     * @param item      添加项
+     * @param t2      添加项
      */
-    public void addItem(int pageIndex, int itemIndex, T item) {
-        data.get(pageIndex).getData().add(itemIndex, item);
+    public void addItem(int pageIndex, int itemIndex, T2 t2) {
+        data.get(pageIndex).getData().add(itemIndex, t2);
         refreshDragViewPager();
     }
 
@@ -99,10 +115,10 @@ public abstract class MDA_DraggedViewPagerController<T> {
      *
      * @param pageIndex item所在页位置
      * @param itemIndex item位置索引
-     * @param item      更新项
+     * @param t2      更新项
      */
-    public void updateItem(int pageIndex, int itemIndex, T item) {
-        data.get(pageIndex).getData().set(itemIndex, item);
+    public void updateItem(int pageIndex, int itemIndex, T2 t2) {
+        data.get(pageIndex).getData().set(itemIndex, t2);
         refreshDragViewPager();
     }
 
@@ -115,12 +131,12 @@ public abstract class MDA_DraggedViewPagerController<T> {
      * @param newItemIndex item移动位置索引
      */
     public void moveItem(int oldPageIndex, int oldItemIndex, int newPageIndex, int newItemIndex) {
-        T item = data.get(oldPageIndex).getData().remove(oldItemIndex);
-        data.get(newPageIndex).getData().add(newItemIndex, item);
+        T2 t2 = data.get(oldPageIndex).getData().remove(oldItemIndex);
+        data.get(newPageIndex).getData().add(newItemIndex, t2);
         refreshDragViewPager();
     }
 
     private void refreshDragViewPager() {
-        draggedViewPager.initView(this);
+        draggedViewPager.notifyDataSetChanged();
     }
 }
