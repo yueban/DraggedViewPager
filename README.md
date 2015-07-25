@@ -18,12 +18,12 @@ A View whose pages and items both can be dragged, looking like a ViewPager
 //init Controller
 MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> controller = new MDA_DraggedViewPagerController<>(List<T1> data,int pageLayoutRes, int itemLayoutRes) {
     @Override
-    public void bindPageData(View pageView, T1 t1) {
+    public void bindPageData(View pageView, int pageIndex) {
 	//bind page data...
     }
 
     @Override
-    public void bindItemData(View itemView, T2 t2) {
+    public void bindItemData(View itemView, int pageIndex, int itemIndex) {
 	//bind item data...
     }
 };
