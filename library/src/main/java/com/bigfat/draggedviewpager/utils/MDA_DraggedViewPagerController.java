@@ -17,7 +17,7 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
     private int pageLayoutRes;
     private int itemLayoutRes;
 
-    public MDA_DraggedViewPagerController(List<T1> data,int pageLayoutRes, int itemLayoutRes) {
+    public MDA_DraggedViewPagerController(List<T1> data, int pageLayoutRes, int itemLayoutRes) {
         this.data = data;
         this.pageLayoutRes = pageLayoutRes;
         this.itemLayoutRes = itemLayoutRes;
@@ -31,15 +31,15 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
         this.draggedViewPager = draggedViewPager;
     }
 
-    public abstract void bindPageData(View pageView, T1 t1);
+    public abstract void bindPageData(View pageView, int pageIndex);
 
-    public abstract void bindItemData(View itemView, T2 t2);
+    public abstract void bindItemData(View itemView, int pageIndex, int itemIndex);
 
     public List<T1> getData() {
         return data;
     }
 
-    public int getPageLayoutRes(){
+    public int getPageLayoutRes() {
         return pageLayoutRes;
     }
 
@@ -70,7 +70,7 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
      * 添加页
      *
      * @param pageIndex 添加页索引
-     * @param t1      添加页
+     * @param t1        添加页
      */
     public void addPage(int pageIndex, T1 t1) {
         data.add(pageIndex, t1);
@@ -92,7 +92,7 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
      *
      * @param pageIndex item添加页索引
      * @param itemIndex item添加位置索引
-     * @param t2      添加项
+     * @param t2        添加项
      */
     public void addItem(int pageIndex, int itemIndex, T2 t2) {
         data.get(pageIndex).getData().add(itemIndex, t2);
@@ -115,7 +115,7 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
      *
      * @param pageIndex item所在页位置
      * @param itemIndex item位置索引
-     * @param t2      更新项
+     * @param t2        更新项
      */
     public void updateItem(int pageIndex, int itemIndex, T2 t2) {
         data.get(pageIndex).getData().set(itemIndex, t2);

@@ -127,7 +127,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
             scrollView.addView(pageListLayout);
             //设置页面索引
             pageListLayout.setPageIndex(i);
-            controller.bindPageData(pageView, controller.getPage(i));
+            controller.bindPageData(pageView, i);
             //设置数据
             pageListLayout.setData(controller.getPage(i).getData());
         }

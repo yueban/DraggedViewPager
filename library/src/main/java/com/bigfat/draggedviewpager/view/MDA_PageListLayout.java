@@ -47,7 +47,7 @@ public class MDA_PageListLayout<T> extends LinearLayout {
         if (data != null) {
             for (int i = 0; i < data.size(); i++) {
                 View itemView = LayoutInflater.from(getContext()).inflate(itemLayoutResId, this, false);
-                bindItemData(itemView, data.get(i));
+                getDraggedViewPager().getController().bindItemData(itemView, pageIndex, i);
 
                 itemView.setTag(pageIndex);
                 if (dragPosition == i) {
@@ -56,10 +56,6 @@ public class MDA_PageListLayout<T> extends LinearLayout {
                 addView(itemView);
             }
         }
-    }
-
-    public void bindItemData(View itemView, T t) {
-        getDraggedViewPager().getController().bindItemData(itemView, t);
     }
 
     public List<T> getData() {
@@ -87,7 +83,7 @@ public class MDA_PageListLayout<T> extends LinearLayout {
     }
 
     public void notifyDataInserted(View itemView, int position) {
-        bindItemData(itemView, data.get(position));
+        getDraggedViewPager().getController().bindItemData(itemView, pageIndex, position);
         addView(itemView, position);
     }
 

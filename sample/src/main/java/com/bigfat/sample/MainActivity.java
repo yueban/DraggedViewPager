@@ -123,13 +123,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void bindPageData(View pageView, Section itemSection) {
+        public void bindPageData(View pageView, int pageIndex) {
+            Section section = controller.getData().get(pageIndex);
             TextView tv = (TextView) pageView.findViewById(R.id.tv_item_section_title);
-            tv.setText(itemSection.getTitle());
+            tv.setText(section.getTitle());
         }
 
         @Override
-        public void bindItemData(View itemView, Item item) {
+        public void bindItemData(View itemView, int pageIndex, int itemIndex) {
+            Item item = controller.getData().get(pageIndex).getData().get(itemIndex);
             ImageView img = (ImageView) itemView.findViewById(R.id.img_item);
             TextView tv = (TextView) itemView.findViewById(R.id.tv_item);
             img.setImageResource(item.getImgRes());
