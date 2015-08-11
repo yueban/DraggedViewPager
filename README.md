@@ -19,12 +19,12 @@ A View whose pages and items both can be dragged, looking like a ViewPager
 MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> controller = new MDA_DraggedViewPagerController<>(List<T1> data,int pageLayoutRes, int itemLayoutRes) {
     @Override
     public void bindPageData(View pageView, int pageIndex) {
-	//bind page data...
+    //bind page data...
     }
 
     @Override
     public void bindItemData(View itemView, int pageIndex, int itemIndex) {
-	//bind item data...
+    //bind item data...
     }
 };
 //set Controller
@@ -34,6 +34,13 @@ draggedViewPager.setController(controller);
 
 ### Callback
 ``` java
+draggedViewPager.setOnPageSelectedListener(new OnPageSelectedListener() {
+    @Override
+    public void onPageSelected(int pageIndex) {
+        
+    }
+});
+
 draggedViewPager.setDraggedViewPagerListener(new MDA_DraggedViewPagerListener() {
     @Override
     public void onDragStarted() {

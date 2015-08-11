@@ -55,8 +55,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample/src/main/java/com/bigfat/sample/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67291665">
-              <caret line="40" column="11" selection-start-line="35" selection-start-column="8" selection-end-line="40" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.7125">
+              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1401#1609#0" expanded="true" />
@@ -3074,8 +3074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/src/main/java/com/bigfat/sample/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67291665">
-          <caret line="40" column="11" selection-start-line="35" selection-start-column="8" selection-end-line="40" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.7125">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1401#1609#0" expanded="true" />
