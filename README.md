@@ -8,10 +8,10 @@ A View whose pages and items both can be dragged, looking like a ViewPager
 ###  Quick Start
 ```xml
 <!-- Define a ScrollView by id "@id/dvp_scroll_view" in your page layout -->
-    <ScrollView
-        android:id="@id/dvp_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+<ScrollView
+    android:id="@id/dvp_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
 ```
 
 ``` java
