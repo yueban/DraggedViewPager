@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
+import com.bigfat.draggedviewpager.utils.OnPageSelectedListener;
 import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
 
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         draggedViewPager.setController(controller);
         draggedViewPager.setItemMoveDelay(200);
         draggedViewPager.setPageSwapDelay(400);
+        draggedViewPager.setOnPageSelectedListener(new OnPageSelectedListener() {
+            @Override
+            public void onPageSelected(int pageIndex) {
+                Log.i(TAG, "onPageSelected [pageIndex:" + pageIndex + "]");
+            }
+        });
         draggedViewPager.setDraggedViewPagerListener(new MDA_DraggedViewPagerListener() {
             @Override
             public void onDragStarted() {

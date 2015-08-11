@@ -14,6 +14,7 @@ import com.bigfat.draggedviewpager.R;
 import com.bigfat.draggedviewpager.utils.DragUtils;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
+import com.bigfat.draggedviewpager.utils.OnPageSelectedListener;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
     public static final String TAG = MDA_DraggedViewPager.class.getSimpleName();
 
     private MDA_DraggedViewPagerListener draggedViewPagerListener;
+    private OnPageSelectedListener onPageSelectedListener;
 
-    //控件
     private MDA_HorizontalLayout container;//布局控件
     private MDA_DraggedViewPagerController controller;
     private int currentPage = 0;//当前页Index
@@ -177,7 +178,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        smoothScrollToPage(currentPage);
+        smoothScrollToCurrentPage(false);
     }
 
     @Override
@@ -196,14 +197,20 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
                 if (Math.abs(touchEndX - touchStartX) > pageSwitchOffsetX &&//判断X轴偏移
                         Math.abs(touchEndX - touchStartX) / ((touchEndTime - touchStartTime) * 1.0f / 1000) > pageSwitchSpeed) {//达到切换速度
-                    if (touchStartX < touchEndX) {
+                    //判断滚动方向
+                    if (touchStartX < touchEndX) {//滚动到上一页
                         smoothScrollToPreviousPage();
-                    } else {
+                    } else {//滚动到下一页
                         smoothScrollToNextPage();
                     }
                 } else {//未达到切换速度，通过滑动偏移量判断所处page
-                    currentPage = (int) Math.round(getScrollX() * 1.0 / DragUtils.pageScrollWidth);
-                    smoothScrollToCurrentPage();
+                    int pageIndex = (int) Math.round(getScrollX() * 1.0 / DragUtils.pageScrollWidth);
+                    if (pageIndex != currentPage) {
+                        currentPage = pageIndex;
+                        smoothScrollToCurrentPage(true);
+                    }else{
+                        smoothScrollToCurrentPage(false);
+                    }
                 }
                 //重置计量值
                 touchStartX = 0;
@@ -213,22 +220,31 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         return super.onTouchEvent(ev);
     }
 
+    public OnPageSelectedListener getOnPageSelectedListener() {
+        return onPageSelectedListener;
+    }
+
+    public void setOnPageSelectedListener(OnPageSelectedListener onPageSelectedListener) {
+        this.onPageSelectedListener = onPageSelectedListener;
+    }
+
     /**
      * 滚动到当前页
      */
-    public void smoothScrollToCurrentPage() {
-//        Log.i(TAG, "smoothScrollToCurrentPage");
+    public void smoothScrollToCurrentPage(boolean callListener) {
         smoothScrollTo(currentPage * DragUtils.pageScrollWidth, 0);
+        if (callListener &&onPageSelectedListener != null) {
+            onPageSelectedListener.onPageSelected(currentPage);
+        }
     }
 
     /**
      * 滚动到上一页
      */
     public void smoothScrollToPreviousPage() {
-//        Log.i(TAG, "smoothScrollToPreviousPage");
         if (currentPage > 0) {//不是第一页
             currentPage--;
-            smoothScrollToCurrentPage();
+            smoothScrollToCurrentPage(true);
         }
     }
 
@@ -236,10 +252,9 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      * 滚动到下一页
      */
     public void smoothScrollToNextPage() {
-//        Log.i(TAG, "smoothScrollToNextPage");
-        if (currentPage < ((ViewGroup) getChildAt(0)).getChildCount() - 1) {//不是最后一页
+        if (currentPage < container.getChildCount() - 1) {//不是最后一页
             currentPage++;
-            smoothScrollToCurrentPage();
+            smoothScrollToCurrentPage(true);
         }
     }
 
@@ -249,29 +264,30 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      * @param pageIndex 指定页索引
      */
     public void smoothScrollToPage(int pageIndex) {
-//        Log.i(TAG, "smoothScrollToPage");
-        if (pageIndex >= 0 && pageIndex <= ((ViewGroup) getChildAt(0)).getChildCount() - 1) {//指定页索引在范围内
+        if (pageIndex >= 0 && pageIndex <= container.getChildCount() - 1//指定页索引在范围内
+                && pageIndex != currentPage) {//且非当前页
             currentPage = pageIndex;
-            smoothScrollToCurrentPage();
+            smoothScrollToCurrentPage(true);
         }
     }
 
     /**
      * 滚动到当前页
      */
-    public void scrollToCurrentPage() {
-//        Log.i(TAG, "scrollToCurrentPage");
+    public void scrollToCurrentPage(boolean callListener) {
         scrollTo(currentPage * DragUtils.pageScrollWidth, 0);
+        if (callListener && onPageSelectedListener != null) {
+            onPageSelectedListener.onPageSelected(currentPage);
+        }
     }
 
     /**
      * 滚动到上一页
      */
     public void scrollToPreviousPage() {
-//        Log.i(TAG, "scrollToPreviousPage");
         if (currentPage > 0) {//不是第一页
             currentPage--;
-            scrollToCurrentPage();
+            scrollToCurrentPage(true);
         }
     }
 
@@ -279,10 +295,9 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      * 滚动到下一页
      */
     public void scrollToNextPage() {
-//        Log.i(TAG, "scrollToNextPage");
-        if (currentPage < ((ViewGroup) getChildAt(0)).getChildCount() - 1) {//不是最后一页
+        if (currentPage < container.getChildCount() - 1) {//不是最后一页
             currentPage++;
-            scrollToCurrentPage();
+            scrollToCurrentPage(true);
         }
     }
 
@@ -292,10 +307,10 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      * @param pageIndex 指定页索引
      */
     public void scrollToPage(int pageIndex) {
-//        Log.i(TAG, "scrollToPage");
-        if (pageIndex >= 0 && pageIndex <= ((ViewGroup) getChildAt(0)).getChildCount() - 1) {//指定页索引在范围内
+        if (pageIndex >= 0 && pageIndex <= container.getChildCount() - 1//指定页索引在范围内
+                && pageIndex != currentPage) {//且非当前页
             currentPage = pageIndex;
-            scrollToCurrentPage();
+            scrollToCurrentPage(true);
         }
     }
 
