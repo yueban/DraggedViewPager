@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         List<Section> data = new ArrayList<>();
 
         data.add(new Section("页面1", generateItemList("1-", 20)));
-        data.add(new Section("页面2", generateItemList("1-", 10)));
-        data.add(new Section("页面3", generateItemList("1-", 35)));
-        data.add(new Section("页面4", generateItemList("1-", 50)));
+        data.add(new Section("页面2", generateItemList("2-", 10)));
+        data.add(new Section("页面3", generateItemList("3-", 35)));
+        data.add(new Section("页面4", generateItemList("4-", 50)));
 
         return data;
     }

@@ -1,5 +1,6 @@
 package com.bigfat.draggedviewpager.utils;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Handler;
 import android.view.DragEvent;
@@ -25,8 +26,8 @@ public class DragUtils {
     public static int pageMargin;//每一页左/右边距
     public static int pageScrollWidth;//滚动时每一页的滚动距离
     public static int pageSwapDelay = 500;//拖拽至边界时切换页面的响应延迟
-    public static int pageExchangeAnimatorDelay = 300;//页面切换动画延迟（页面切换后执行动画的延迟）
-    public static int itemMoveDelay = 300;//item切换响应延迟
+    public static int itemMoveDelay = 200;//item切换响应延迟
+    public static int pageExchangeAnimatorDelay = 50;//页面切换动画延迟（页面切换后执行动画的延迟）
     private static int pageScrollRunnableFlag = 0;//页面切换Runnable的标志，避免重复执行页面切换事件（0：不执行 1：下一页 2：上一页）
     private static float dragTouchX;//拖拽点在item上的X坐标
     private static float dragTouchY;//拖拽点在item上的Y坐标
@@ -196,10 +197,11 @@ public class DragUtils {
 
             /**
              * 滚动到上一页
-             * @param pageSwipeRunnable 执行页面交换操作的Runnable
+             *
+             * @param pageSwapRunnable 执行页面交换操作的Runnable
              * @param itemMoveRunnable 执行item移动的Runnable
              */
-            private void runnableScrollToPreviousPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
+            private void runnableScrollToPreviousPage(final Runnable pageSwapRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToPreviousPage");
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
                     return;
@@ -209,8 +211,8 @@ public class DragUtils {
                     public void run() {
                         draggedViewPager.smoothScrollToPreviousPage();
 
-                        if (pageSwipeRunnable != null) {
-                            handler.postDelayed(pageSwipeRunnable, pageExchangeAnimatorDelay);
+                        if (pageSwapRunnable != null) {
+                            handler.postDelayed(pageSwapRunnable, pageExchangeAnimatorDelay);
                         }
 
                         if (itemMoveRunnable != null) {
@@ -226,11 +228,16 @@ public class DragUtils {
 
             /**
              * 滚动到下一页
+             *
              * @param pageSwipeRunnable 执行页面交换操作的Runnable
              * @param itemMoveRunnable 执行item移动的Runnable
              */
             private void runnableScrollToNextPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToNextPage");
+                if (pageSwipeRunnable!=null//如果是页面交换事件
+                        &&draggedViewPager.getCurrentPage() + 1 == draggedViewPager.getData().size() - 1) {//且当前页是最后一页，则不执行滚动事件
+                    return;
+                }
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
                     return;
                 }
@@ -341,7 +348,7 @@ public class DragUtils {
         dragPageListLayout.setPageIndex(pageIndex);
 
         //交换数据
-        Collections.swap(pageListLayout.getDraggedViewPager().getData(), pageIndex, dragPageListLayout.getPageIndex());
+        Collections.swap(pageListLayout.getDraggedViewPager().getData(), dragPageIndex, pageIndex);
 
         //获取待交换View
         final View view = viewGroup.getChildAt(index);
@@ -360,6 +367,27 @@ public class DragUtils {
                         .ofFloat(view, View.X, viewX, view.getLeft())
                         .setDuration(DragUtils.getDuration(view));
                 animator.setInterpolator(new AccelerateDecelerateInterpolator());
+                animator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        isAnim = true;
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        isAnim = false;
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
                 animator.start();
             }
         });

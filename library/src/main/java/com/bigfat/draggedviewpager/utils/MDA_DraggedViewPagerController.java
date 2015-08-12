@@ -11,6 +11,9 @@ import java.util.List;
 /**
  * Created by yueban on 17/7/15.
  */
+/**
+ * Created by yueban on 17/7/15.
+ */
 public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
     private MDA_DraggedViewPager draggedViewPager;
     private List<T1> data;
@@ -97,6 +100,7 @@ public abstract class MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> {
     public void addItem(int pageIndex, int itemIndex, T2 t2) {
         data.get(pageIndex).getData().add(itemIndex, t2);
         refreshDragViewPager();
+        getDraggedViewPager().scrollToPageBottom(pageIndex);
     }
 
     /**

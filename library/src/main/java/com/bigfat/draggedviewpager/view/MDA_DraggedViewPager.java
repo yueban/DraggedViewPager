@@ -229,6 +229,21 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
     }
 
     /**
+     * 滚动到页底部
+     *
+     * @param pageIndex 页索引
+     */
+    public void scrollToPageBottom(int pageIndex) {
+        final ScrollView scrollView = (ScrollView) container.getChildAt(pageIndex).findViewById(R.id.dvp_scroll_view);
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(FOCUS_DOWN);
+            }
+        });
+    }
+
+    /**
      * 滚动到当前页
      */
     public void smoothScrollToCurrentPage(boolean callListener) {
