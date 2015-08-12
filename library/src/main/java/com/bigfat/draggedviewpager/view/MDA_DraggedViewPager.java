@@ -208,7 +208,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
                     if (pageIndex != currentPage) {
                         currentPage = pageIndex;
                         smoothScrollToCurrentPage(true);
-                    }else{
+                    } else {
                         smoothScrollToCurrentPage(false);
                     }
                 }
@@ -245,10 +245,12 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     /**
      * 滚动到当前页
+     *
+     * @param callListener 是否要触发监听器
      */
     public void smoothScrollToCurrentPage(boolean callListener) {
         smoothScrollTo(currentPage * DragUtils.pageScrollWidth, 0);
-        if (callListener &&onPageSelectedListener != null) {
+        if (callListener && onPageSelectedListener != null) {
             onPageSelectedListener.onPageSelected(currentPage);
         }
     }
@@ -288,6 +290,8 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     /**
      * 滚动到当前页
+     *
+     * @param callListener 是否要触发监听器
      */
     public void scrollToCurrentPage(boolean callListener) {
         scrollTo(currentPage * DragUtils.pageScrollWidth, 0);

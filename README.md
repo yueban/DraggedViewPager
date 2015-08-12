@@ -4,6 +4,14 @@
 A View whose pages and items both can be dragged, looking like a ViewPager
 <img src="https://github.com/yueban/DraggedViewPager/raw/master/DraggedViewPager.gif" width="300" alt="Screenshot"/>
 
+## Gradle
+DraggedViewPager is avaiable in [JCenter](https://bintray.com/bintray/jcenter?filterByPkgName=DraggedViewPager)
+
+**Gradle dependency:**
+```gradle
+compile 'com.bigfat.draggedviewpager:library:1.0.1'
+```
+
 ## Usage
 ###  Quick Start
 ```xml
