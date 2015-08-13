@@ -72,10 +72,6 @@
                 <element signature="e#1403#1404#0" expanded="true" />
                 <element signature="e#1475#1476#0" expanded="true" />
                 <element signature="e#1514#1515#0" expanded="true" />
-                <element signature="e#1752#1818#0" expanded="true" />
-                <element signature="e#1846#1909#0" expanded="true" />
-                <element signature="e#2336#2407#0" expanded="true" />
-                <element signature="e#2440#2499#0" expanded="true" />
                 <element signature="e#2819#2820#0" expanded="true" />
                 <element signature="e#2862#2863#0" expanded="true" />
                 <element signature="e#2923#2924#0" expanded="true" />
@@ -88,8 +84,6 @@
                 <element signature="e#4769#4770#0" expanded="true" />
                 <element signature="e#8198#8199#0" expanded="true" />
                 <element signature="e#8243#8244#0" expanded="true" />
-                <element signature="e#8666#8811#0" expanded="true" />
-                <element signature="e#8810#8811#0" expanded="true" />
                 <element signature="e#11083#11084#0" expanded="true" />
                 <element signature="e#11117#11118#0" expanded="true" />
               </folding>
@@ -101,17 +95,27 @@
         <entry file="file://$PROJECT_DIR$/library/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DragUtils.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5377358">
+              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DragUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/DragUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12555066">
-              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,7 +137,7 @@
         <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/MDA_DraggedViewPagerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -817,9 +821,9 @@
                 <option name="name" value="preDexRelease" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.bigfat.draggedviewpager:library:1.0.1" />
+                <option name="description" value="Prepare com.bigfat.draggedviewpager:library:1.0.2" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComBigfatDraggedviewpagerLibrary101Library" />
+                <option name="name" value="prepareComBigfatDraggedviewpagerLibrary102Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Uninstalls the Debug build." />
@@ -1837,9 +1841,9 @@
                 <option name="name" value="prepareComAndroidSupportSupportV42221Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.bigfat.draggedviewpager:library:1.0.1" />
+                <option name="description" value="Prepare com.bigfat.draggedviewpager:library:1.0.2" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/sample" />
-                <option name="name" value="prepareComBigfatDraggedviewpagerLibrary101Library" />
+                <option name="name" value="prepareComBigfatDraggedviewpagerLibrary102Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/sample" />
@@ -1975,7 +1979,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="5752939341000" />
+        <entry key="$PROJECT_DIR$" value="5753037522000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2530,14 +2534,15 @@
         <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/OnPageSelectedListener.java" />
         <option value="$PROJECT_DIR$/local.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/MDA_DraggedViewPagerController.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/view/MDA_PageListLayout.java" />
         <option value="$PROJECT_DIR$/sample/src/main/java/com/bigfat/sample/MainActivity.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/DragUtils.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/view/MDA_DraggedViewPager.java" />
-        <option value="$PROJECT_DIR$/library/build.gradle" />
         <option value="$PROJECT_DIR$/library/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/library/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/MDA_DraggedViewPagerController.java" />
+        <option value="$PROJECT_DIR$/library/build.gradle" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -2631,7 +2636,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="AndroidView" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -2643,18 +2648,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DraggedViewPager" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2676,6 +2669,18 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DraggedViewPager" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2939,9 +2944,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760897" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2955,12 +2958,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24927954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760897" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -3003,10 +3008,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3019,8 +3020,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3052,10 +3051,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3068,8 +3063,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3101,10 +3094,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3117,8 +3106,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3166,10 +3153,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3182,8 +3165,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3213,10 +3194,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3229,8 +3206,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3253,10 +3228,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3269,8 +3240,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3293,10 +3262,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3309,8 +3274,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3353,13 +3316,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="36" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/app/ActivityManager.java">
@@ -3406,23 +3369,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample/src/main/res/layout/item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05451937">
           <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample/src/main/res/layout/item_section.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sample/src/main/res/layout/item_section.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4328018">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/model/Page.java">
@@ -3481,14 +3444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/MDA_DraggedViewPagerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample/src/main/java/com/bigfat/sample/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3521,14 +3476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/view/MDA_DraggedViewPager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3538,10 +3485,6 @@
             <element signature="e#1403#1404#0" expanded="true" />
             <element signature="e#1475#1476#0" expanded="true" />
             <element signature="e#1514#1515#0" expanded="true" />
-            <element signature="e#1752#1818#0" expanded="true" />
-            <element signature="e#1846#1909#0" expanded="true" />
-            <element signature="e#2336#2407#0" expanded="true" />
-            <element signature="e#2440#2499#0" expanded="true" />
             <element signature="e#2819#2820#0" expanded="true" />
             <element signature="e#2862#2863#0" expanded="true" />
             <element signature="e#2923#2924#0" expanded="true" />
@@ -3554,8 +3497,6 @@
             <element signature="e#4769#4770#0" expanded="true" />
             <element signature="e#8198#8199#0" expanded="true" />
             <element signature="e#8243#8244#0" expanded="true" />
-            <element signature="e#8666#8811#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
             <element signature="e#11083#11084#0" expanded="true" />
             <element signature="e#11117#11118#0" expanded="true" />
           </folding>
@@ -3564,11 +3505,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/DragUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12555066">
-          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="21" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/src/main/java/com/bigfat/draggedviewpager/utils/MDA_DraggedViewPagerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="102" column="5" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5377358">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
