@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         draggedViewPager.setController(controller);
         draggedViewPager.setItemMoveDelay(200);
         draggedViewPager.setPageSwapDelay(400);
+//        draggedViewPager.setIsDragEnabled(false);//default is true
         draggedViewPager.setOnPageSelectedListener(new OnPageSelectedListener() {
             @Override
             public void onPageSelected(int pageIndex) {

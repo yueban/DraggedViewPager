@@ -9,7 +9,7 @@ DraggedViewPager is avaiable in [JCenter](https://bintray.com/bintray/jcenter?fi
 
 **Gradle dependency:**
 ```gradle
-compile 'com.bigfat.draggedviewpager:library:1.0.2'
+compile 'com.bigfat.draggedviewpager:library:1.0.4'
 ```
 
 ## Usage
@@ -37,7 +37,10 @@ MDA_DraggedViewPagerController<T1 extends Page<T2>, T2> controller = new MDA_Dra
 };
 //set Controller
 draggedViewPager.setController(controller);
-//see sample for more detail
+draggedViewPager.setItemMoveDelay(200);
+draggedViewPager.setPageSwapDelay(400);
+//draggedViewPager.setIsDragEnabled(false);//default is true
+//...see sample for more detail
 ```
 
 ### Callback
