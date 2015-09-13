@@ -9,7 +9,7 @@ DraggedViewPager is avaiable in [JCenter](https://bintray.com/bintray/jcenter?fi
 
 **Gradle dependency:**
 ```gradle
-compile 'com.bigfat.draggedviewpager:library:1.0.4'
+compile 'com.bigfat.draggedviewpager:library:1.0.5'
 ```
 
 ## Usage

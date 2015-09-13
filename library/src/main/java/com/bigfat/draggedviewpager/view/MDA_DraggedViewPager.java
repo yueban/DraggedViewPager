@@ -157,24 +157,30 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     public void initDragEvent(DragUtils.DragViewType type) {
         this.currentDragViewType = type;
-        if (isDragEnabled) {
-            for (int i = 0; i < container.getChildCount(); i++) {
-                //页面拖拽绑定监听器
-                ViewGroup viewGroup = (ViewGroup) container.getChildAt(i);
+        for (int i = 0; i < container.getChildCount(); i++) {
+            //页面拖拽绑定监听器
+            ViewGroup viewGroup = (ViewGroup) container.getChildAt(i);
+            if (isDragEnabled) {
                 if (type == DragUtils.DragViewType.ITEM) {
                     DragUtils.removeDragEvent(viewGroup);
                 } else {
                     DragUtils.setupDragEvent(this, viewGroup, DragUtils.DragViewType.PAGE, draggedViewPagerListener);
                 }
-                //item拖拽绑定监听器
-                MDA_PageListLayout layout = (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
-                for (int j = 0; j < layout.getChildCount(); j++) {
-                    View view = layout.getChildAt(j);
+            } else {
+                DragUtils.removeDragEvent(viewGroup);
+            }
+            //item拖拽绑定监听器
+            MDA_PageListLayout layout = (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+            for (int j = 0; j < layout.getChildCount(); j++) {
+                View view = layout.getChildAt(j);
+                if (isDragEnabled) {
                     if (type == DragUtils.DragViewType.PAGE) {
                         DragUtils.removeDragEvent(view);
                     } else {
                         DragUtils.setupDragEvent(this, view, DragUtils.DragViewType.ITEM, draggedViewPagerListener);
                     }
+                } else {
+                    DragUtils.removeDragEvent(view);
                 }
             }
         }
