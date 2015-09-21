@@ -61,6 +61,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "onPageSwapped [oldPageIndex:" + oldPageIndex + ", oldItemIndex:" + oldItemIndex + ", newPageIndex:" + newPageIndex + ", newItemIndex:" + newItemIndex + "]");
             }
         });
+//        draggedViewPager.setPageDragSetting(new PageDragSetting() {
+//            @Override
+//            public boolean canBeDragged(int pageIndex) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean canBeSwiped(int pageIndex) {
+//                return false;
+//            }
+//        });
     }
 
     @Override

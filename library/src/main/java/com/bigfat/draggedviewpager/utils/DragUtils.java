@@ -198,11 +198,15 @@ public class DragUtils {
             /**
              * 滚动到上一页
              *
-             * @param pageSwapRunnable 执行页面交换操作的Runnable
+             * @param pageSwipeRunnable 执行页面交换操作的Runnable
              * @param itemMoveRunnable 执行item移动的Runnable
              */
-            private void runnableScrollToPreviousPage(final Runnable pageSwapRunnable, final Runnable itemMoveRunnable) {
+            private void runnableScrollToPreviousPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToPreviousPage");
+                if (pageSwipeRunnable != null//如果是页面交换事件
+                        && draggedViewPager.getCurrentPage() == 0) {//且当前页是第一页，则不执行滚动事件
+                    return;
+                }
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
                     return;
                 }
@@ -211,8 +215,8 @@ public class DragUtils {
                     public void run() {
                         draggedViewPager.smoothScrollToPreviousPage();
 
-                        if (pageSwapRunnable != null) {
-                            handler.postDelayed(pageSwapRunnable, pageExchangeAnimatorDelay);
+                        if (pageSwipeRunnable != null) {
+                            handler.postDelayed(pageSwipeRunnable, pageExchangeAnimatorDelay);
                         }
 
                         if (itemMoveRunnable != null) {
@@ -234,8 +238,8 @@ public class DragUtils {
              */
             private void runnableScrollToNextPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
 //                Log.i(TAG, "runnableScrollToNextPage");
-                if (pageSwipeRunnable!=null//如果是页面交换事件
-                        &&draggedViewPager.getCurrentPage() + 1 == draggedViewPager.getData().size() - 1) {//且当前页是最后一页，则不执行滚动事件
+                if (pageSwipeRunnable != null//如果是页面交换事件
+                        && draggedViewPager.getCurrentPage() == draggedViewPager.getData().size() - 1) {//且当前页是最后一页，则不执行滚动事件
                     return;
                 }
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
@@ -278,6 +282,10 @@ public class DragUtils {
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                //不可被拖拽页面不启动拖拽
+                if (type == DragViewType.PAGE && !draggedViewPager.getPageDragSetting().canBeDragged(((ViewGroup) view.getParent()).indexOfChild(view))) {
+                    return true;
+                }
                 view.startDrag(null, new CustomDragShadowBuilder(view, dragTouchX, dragTouchY), new DragState(view, type), 0);
                 draggedViewPager.initDragEvent(type);
                 return true;
@@ -412,13 +420,15 @@ public class DragUtils {
      * @return 拖拽事件类型
      */
     public static DragEventType getDragEventType(MDA_DraggedViewPager draggedViewPager, int currentPageIndex, int pageIndex, View view, DragEvent event) {
-        if (currentPageIndex > 0//在有上一页的前提下
-                && (pageIndex < currentPageIndex//触摸至上一页
-                || (pageIndex == currentPageIndex && event.getX() < view.getWidth() / 8))) {//或至触摸至当前页左边界，则切换到下一页
+        if (currentPageIndex > 0//有上一页
+                && (draggedViewPager.getPageDragSetting().canBeSwiped(currentPageIndex - 1))//上一页可被交换
+                //触摸至上一页//或至触摸至当前页左边界，则切换到上一页
+                && (pageIndex < currentPageIndex || (pageIndex == currentPageIndex && event.getX() < view.getWidth() / 8))) {
             return DragEventType.SCROLL_PREVIOUS;
-        } else if (currentPageIndex < draggedViewPager.getContainer().getChildCount() - 1 &&//在有下一页的前提下
-                (pageIndex > currentPageIndex//触摸至下一页
-                        || (pageIndex == currentPageIndex && event.getX() > view.getWidth() / 8 * 7))) {//或至触摸至当前页右边界，则切换到下一页
+        } else if (currentPageIndex < (draggedViewPager.getContainer().getChildCount() - 1)//在有下一页的前提下
+                && (draggedViewPager.getPageDragSetting().canBeSwiped(currentPageIndex + 1))//下一页可被交换
+                //触摸至下一页//或至触摸至当前页右边界，则切换到下一页
+                && (pageIndex > currentPageIndex || (pageIndex == currentPageIndex && event.getX() > view.getWidth() / 8 * 7))) {
             return DragEventType.SCROLL_NEXT;
         }
         return DragEventType.DEFAULT;

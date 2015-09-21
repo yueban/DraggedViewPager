@@ -12,6 +12,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
 import com.bigfat.draggedviewpager.R;
+import com.bigfat.draggedviewpager.utils.PageDragSetting;
 import com.bigfat.draggedviewpager.utils.DragUtils;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
@@ -28,6 +29,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     private MDA_DraggedViewPagerListener draggedViewPagerListener;
     private OnPageSelectedListener onPageSelectedListener;
+    private PageDragSetting pageDragSetting;
 
     private MDA_HorizontalLayout container;//布局控件
     private MDA_DraggedViewPagerController controller;
@@ -103,9 +105,17 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         this.draggedViewPagerListener = draggedViewPagerListener;
     }
 
+    public void setPageDragSetting(PageDragSetting pageDragSetting) {
+        this.pageDragSetting = pageDragSetting;
+    }
+
     public void setIsDragEnabled(boolean isDragEnabled) {
         this.isDragEnabled = isDragEnabled;
         initDragEvent(currentDragViewType);
+    }
+
+    public PageDragSetting getPageDragSetting() {
+        return pageDragSetting;
     }
 
     /**

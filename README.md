@@ -75,6 +75,20 @@ draggedViewPager.setDraggedViewPagerListener(new MDA_DraggedViewPagerListener() 
 });
 ```
 
+### Setting
+```java
+draggedViewPager.setPageDragSetting(new PageDragSetting() {
+    @Override
+    public boolean canBeDragged(int pageIndex) {
+        return false;
+    }
+    @Override
+    public boolean canBeSwiped(int pageIndex) {
+        return false;
+    }
+});
+```
+
 ### Control DraggedViewPager
 ``` java
 controller.swapPages(int firstIndex, int secondIndex);
