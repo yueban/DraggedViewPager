@@ -9,7 +9,7 @@ DraggedViewPager is avaiable in [JCenter](https://bintray.com/bintray/jcenter?fi
 
 **Gradle dependency:**
 ```gradle
-compile 'com.bigfat.draggedviewpager:library:1.0.5'
+compile 'com.bigfat.draggedviewpager:library:1.0.7'
 ```
 
 ## Usage
@@ -48,7 +48,7 @@ draggedViewPager.setPageSwapDelay(400);
 draggedViewPager.setOnPageSelectedListener(new OnPageSelectedListener() {
     @Override
     public void onPageSelected(int pageIndex) {
-        
+
     }
 });
 
@@ -104,7 +104,7 @@ powered by [mingdao](http://www.mingdao.com/home)
 
 ## License
 
-    Copyright 2015 范柏舟
+    Copyright 2015 yueban
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
