@@ -10,23 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
-
 import com.bigfat.draggedviewpager.R;
-import com.bigfat.draggedviewpager.utils.PageDragSetting;
 import com.bigfat.draggedviewpager.utils.DragUtils;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
 import com.bigfat.draggedviewpager.utils.OnPageSelectedListener;
-
+import com.bigfat.draggedviewpager.utils.PageDragSetting;
 import java.util.List;
-
 
 /**
  * Created by yueban on 10/7/15.
  */
 public class MDA_DraggedViewPager extends HorizontalScrollView {
     public static final String TAG = MDA_DraggedViewPager.class.getSimpleName();
-
+    private final BaseMDA_DraggedViewPagerListener baseDraggedViewPagerListener = new BaseMDA_DraggedViewPagerListener();
     private MDA_DraggedViewPagerListener draggedViewPagerListener;
     private OnPageSelectedListener onPageSelectedListener;
     private PageDragSetting pageDragSetting;
@@ -105,10 +102,6 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         this.draggedViewPagerListener = draggedViewPagerListener;
     }
 
-    public void setPageDragSetting(PageDragSetting pageDragSetting) {
-        this.pageDragSetting = pageDragSetting;
-    }
-
     public void setIsDragEnabled(boolean isDragEnabled) {
         this.isDragEnabled = isDragEnabled;
         initDragEvent(currentDragViewType);
@@ -116,6 +109,10 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     public PageDragSetting getPageDragSetting() {
         return pageDragSetting;
+    }
+
+    public void setPageDragSetting(PageDragSetting pageDragSetting) {
+        this.pageDragSetting = pageDragSetting;
     }
 
     /**
@@ -136,6 +133,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
         DragUtils.itemMoveDelay = itemMoveDelay;
     }
 
+    @SuppressWarnings("unchecked")
     public void notifyDataSetChanged() {
         int currentPageIndex = currentPage;
 
@@ -174,20 +172,21 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
                 if (type == DragUtils.DragViewType.ITEM) {
                     DragUtils.removeDragEvent(viewGroup);
                 } else {
-                    DragUtils.setupDragEvent(this, viewGroup, DragUtils.DragViewType.PAGE, draggedViewPagerListener);
+                    DragUtils.setupDragEvent(this, viewGroup, DragUtils.DragViewType.PAGE, baseDraggedViewPagerListener);
                 }
             } else {
                 DragUtils.removeDragEvent(viewGroup);
             }
             //item拖拽绑定监听器
-            MDA_PageListLayout layout = (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+            MDA_PageListLayout layout =
+                (MDA_PageListLayout) ((ViewGroup) viewGroup.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
             for (int j = 0; j < layout.getChildCount(); j++) {
                 View view = layout.getChildAt(j);
                 if (isDragEnabled) {
                     if (type == DragUtils.DragViewType.PAGE) {
                         DragUtils.removeDragEvent(view);
                     } else {
-                        DragUtils.setupDragEvent(this, view, DragUtils.DragViewType.ITEM, draggedViewPagerListener);
+                        DragUtils.setupDragEvent(this, view, DragUtils.DragViewType.ITEM, baseDraggedViewPagerListener);
                     }
                 } else {
                     DragUtils.removeDragEvent(view);
@@ -228,7 +227,8 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
                 long touchEndTime = System.currentTimeMillis();
 
                 if (Math.abs(touchEndX - touchStartX) > pageSwitchOffsetX &&//判断X轴偏移
-                        Math.abs(touchEndX - touchStartX) / ((touchEndTime - touchStartTime) * 1.0f / 1000) > pageSwitchSpeed) {//达到切换速度
+                    Math.abs(touchEndX - touchStartX) / ((touchEndTime - touchStartTime) * 1.0f / 1000)
+                        > pageSwitchSpeed) {//达到切换速度
                     //判断滚动方向
                     if (touchStartX < touchEndX) {//滚动到上一页
                         smoothScrollToPreviousPage();
@@ -314,7 +314,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      */
     public void smoothScrollToPage(int pageIndex) {
         if (pageIndex >= 0 && pageIndex <= container.getChildCount() - 1//指定页索引在范围内
-                && pageIndex != currentPage) {//且非当前页
+            && pageIndex != currentPage) {//且非当前页
             currentPage = pageIndex;
             smoothScrollToCurrentPage(true);
         }
@@ -359,7 +359,7 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
      */
     public void scrollToPage(int pageIndex) {
         if (pageIndex >= 0 && pageIndex <= container.getChildCount() - 1//指定页索引在范围内
-                && pageIndex != currentPage) {//且非当前页
+            && pageIndex != currentPage) {//且非当前页
             currentPage = pageIndex;
             scrollToCurrentPage(true);
         }
@@ -367,5 +367,38 @@ public class MDA_DraggedViewPager extends HorizontalScrollView {
 
     public int getCurrentPage() {
         return currentPage;
+    }
+
+    class BaseMDA_DraggedViewPagerListener implements MDA_DraggedViewPagerListener {
+        @Override
+        public void onDragStarted() {
+            if (draggedViewPagerListener != null) {
+                draggedViewPagerListener.onDragStarted();
+            }
+        }
+
+        @Override
+        public void onDragEnded() {
+            if (draggedViewPagerListener != null) {
+                draggedViewPagerListener.onDragEnded();
+            }
+        }
+
+        @Override
+        public void onPageSwapped(int firstPageIndex, int secondPageIndex) {
+            for (int i = 0; i < getData().size(); i++) {
+                controller.bindPageData(container.getChildAt(i), i);
+            }
+            if (draggedViewPagerListener != null) {
+                draggedViewPagerListener.onPageSwapped(firstPageIndex, secondPageIndex);
+            }
+        }
+
+        @Override
+        public void onItemMoved(int oldPageIndex, int oldItemIndex, int newPageIndex, int newItemIndex) {
+            if (draggedViewPagerListener != null) {
+                draggedViewPagerListener.onItemMoved(oldPageIndex, oldItemIndex, newPageIndex, newItemIndex);
+            }
+        }
     }
 }

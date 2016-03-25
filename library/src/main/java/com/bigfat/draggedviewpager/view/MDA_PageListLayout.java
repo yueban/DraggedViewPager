@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import java.util.List;
 
 /**
@@ -80,11 +79,17 @@ public class MDA_PageListLayout<T> extends LinearLayout {
 
     public void notifyDataRemoved(int position) {
         removeViewAt(position);
+        for (int i = 0; i < data.size(); i++) {
+            getDraggedViewPager().getController().bindItemData(getChildAt(i), pageIndex, i);
+        }
     }
 
     public void notifyDataInserted(View itemView, int position) {
         getDraggedViewPager().getController().bindItemData(itemView, pageIndex, position);
         addView(itemView, position);
+        for (int i = 0; i < data.size(); i++) {
+            getDraggedViewPager().getController().bindItemData(getChildAt(i), pageIndex, i);
+        }
     }
 
     public MDA_DraggedViewPager getDraggedViewPager() {

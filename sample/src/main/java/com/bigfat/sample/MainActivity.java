@@ -8,12 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerController;
 import com.bigfat.draggedviewpager.utils.MDA_DraggedViewPagerListener;
 import com.bigfat.draggedviewpager.utils.OnPageSelectedListener;
 import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         draggedViewPager.setController(controller);
         draggedViewPager.setItemMoveDelay(200);
         draggedViewPager.setPageSwapDelay(400);
-//        draggedViewPager.setIsDragEnabled(false);//default is true
+        //        draggedViewPager.setIsDragEnabled(false);//default is true
         draggedViewPager.setOnPageSelectedListener(new OnPageSelectedListener() {
             @Override
             public void onPageSelected(int pageIndex) {
@@ -58,20 +57,28 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemMoved(int oldPageIndex, int oldItemIndex, int newPageIndex, int newItemIndex) {
-                Log.i(TAG, "onPageSwapped [oldPageIndex:" + oldPageIndex + ", oldItemIndex:" + oldItemIndex + ", newPageIndex:" + newPageIndex + ", newItemIndex:" + newItemIndex + "]");
+                Log.i(TAG, "onPageSwapped [oldPageIndex:"
+                    + oldPageIndex
+                    + ", oldItemIndex:"
+                    + oldItemIndex
+                    + ", newPageIndex:"
+                    + newPageIndex
+                    + ", newItemIndex:"
+                    + newItemIndex
+                    + "]");
             }
         });
-//        draggedViewPager.setPageDragSetting(new PageDragSetting() {
-//            @Override
-//            public boolean canBeDragged(int pageIndex) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean canBeSwiped(int pageIndex) {
-//                return false;
-//            }
-//        });
+        //        draggedViewPager.setPageDragSetting(new PageDragSetting() {
+        //            @Override
+        //            public boolean canBeDragged(int pageIndex) {
+        //                return false;
+        //            }
+        //
+        //            @Override
+        //            public boolean canBeSwiped(int pageIndex) {
+        //                return false;
+        //            }
+        //        });
     }
 
     @Override
@@ -142,19 +149,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void bindPageData(View pageView, int pageIndex) {
+        public void bindPageData(View pageView, final int pageIndex) {
             Section section = controller.getData().get(pageIndex);
             TextView tv = (TextView) pageView.findViewById(R.id.tv_item_section_title);
             tv.setText(section.getTitle());
+
+            pageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "page:" + pageIndex, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         @Override
-        public void bindItemData(View itemView, int pageIndex, int itemIndex) {
-            Item item = controller.getData().get(pageIndex).getData().get(itemIndex);
+        public void bindItemData(View itemView, final int pageIndex, final int itemIndex) {
+            final Item item = controller.getData().get(pageIndex).getData().get(itemIndex);
             ImageView img = (ImageView) itemView.findViewById(R.id.img_item);
             TextView tv = (TextView) itemView.findViewById(R.id.tv_item);
             img.setImageResource(item.getImgRes());
             tv.setText(item.getText());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "page:" + pageIndex + " item:" + itemIndex, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

@@ -10,11 +10,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ScrollView;
-
 import com.bigfat.draggedviewpager.R;
 import com.bigfat.draggedviewpager.view.MDA_DraggedViewPager;
 import com.bigfat.draggedviewpager.view.MDA_PageListLayout;
-
 import java.util.Collections;
 
 public class DragUtils {
@@ -46,7 +44,8 @@ public class DragUtils {
      * @param type             拖拽View类型 {@link DragViewType}
      * @param listener         拖拽事件回调
      */
-    public static void setupDragEvent(final MDA_DraggedViewPager draggedViewPager, View view, final DragViewType type, final MDA_DraggedViewPagerListener listener) {
+    public static void setupDragEvent(final MDA_DraggedViewPager draggedViewPager, View view, final DragViewType type,
+        final MDA_DraggedViewPagerListener listener) {
         view.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(final View view, final DragEvent event) {
@@ -56,9 +55,7 @@ public class DragUtils {
                     case DragEvent.ACTION_DRAG_STARTED:
                         if (view == dragState.view) {
                             view.setVisibility(View.INVISIBLE);
-                            if (listener != null) {
-                                listener.onDragStarted();
-                            }
+                            listener.onDragStarted();
                         }
                         executeRunnable(null, 0);
                         return true;
@@ -108,7 +105,8 @@ public class DragUtils {
                                         runnableScrollToPreviousPage(null, new Runnable() {
                                             @Override
                                             public void run() {
-                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager().getMDA_PageListLayout(ITEM_currentPageIndex - 1), 0, listener);
+                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager()
+                                                    .getMDA_PageListLayout(ITEM_currentPageIndex - 1), 0, listener);
                                             }
                                         });
                                         break;
@@ -117,7 +115,8 @@ public class DragUtils {
                                         runnableScrollToNextPage(null, new Runnable() {
                                             @Override
                                             public void run() {
-                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager().getMDA_PageListLayout(ITEM_currentPageIndex + 1), 0, listener);
+                                                moveItemView(dragState, ((MDA_PageListLayout) viewGroup).getDraggedViewPager()
+                                                    .getMDA_PageListLayout(ITEM_currentPageIndex + 1), 0, listener);
                                             }
                                         });
                                         break;
@@ -130,10 +129,13 @@ public class DragUtils {
                                             //拖拽到达列表边界时，令ScrollView滚动
                                             ScrollView svPage = (ScrollView) viewGroup.getParent();
 
-                                            ViewGroup.MarginLayoutParams itemParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                                            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams();
+                                            ViewGroup.MarginLayoutParams itemParams =
+                                                (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+                                            ViewGroup.MarginLayoutParams layoutParams =
+                                                (ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams();
                                             int itemHeight = view.getHeight() + itemParams.topMargin + itemParams.bottomMargin;
-                                            int listVisibleHeight = svPage.getHeight() - svPage.getPaddingTop() - svPage.getPaddingBottom()
+                                            int listVisibleHeight =
+                                                svPage.getHeight() - svPage.getPaddingTop() - svPage.getPaddingBottom()
                                                     - viewGroup.getPaddingTop() - viewGroup.getPaddingBottom()
                                                     - layoutParams.topMargin - layoutParams.bottomMargin;
 
@@ -166,9 +168,7 @@ public class DragUtils {
                             @Override
                             public void run() {
                                 dragState.view.setVisibility(View.VISIBLE);
-                                if (listener != null) {
-                                    listener.onDragEnded();
-                                }
+                                listener.onDragEnded();
                                 draggedViewPager.initDragEvent(DragViewType.ALL);
                             }
                         }, 0);
@@ -202,9 +202,9 @@ public class DragUtils {
              * @param itemMoveRunnable 执行item移动的Runnable
              */
             private void runnableScrollToPreviousPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
-//                Log.i(TAG, "runnableScrollToPreviousPage");
+                //                Log.i(TAG, "runnableScrollToPreviousPage");
                 if (pageSwipeRunnable != null//如果是页面交换事件
-                        && draggedViewPager.getCurrentPage() == 0) {//且当前页是第一页，则不执行滚动事件
+                    && draggedViewPager.getCurrentPage() == 0) {//且当前页是第一页，则不执行滚动事件
                     return;
                 }
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
@@ -237,9 +237,9 @@ public class DragUtils {
              * @param itemMoveRunnable 执行item移动的Runnable
              */
             private void runnableScrollToNextPage(final Runnable pageSwipeRunnable, final Runnable itemMoveRunnable) {
-//                Log.i(TAG, "runnableScrollToNextPage");
+                //                Log.i(TAG, "runnableScrollToNextPage");
                 if (pageSwipeRunnable != null//如果是页面交换事件
-                        && draggedViewPager.getCurrentPage() == draggedViewPager.getData().size() - 1) {//且当前页是最后一页，则不执行滚动事件
+                    && draggedViewPager.getCurrentPage() == draggedViewPager.getData().size() - 1) {//且当前页是最后一页，则不执行滚动事件
                     return;
                 }
                 if (pageScrollRunnableFlag != 0) {//有正在执行的滚动事件
@@ -283,7 +283,9 @@ public class DragUtils {
             @Override
             public boolean onLongClick(View view) {
                 //不可被拖拽页面不启动拖拽
-                if (type == DragViewType.PAGE && !draggedViewPager.getPageDragSetting().canBeDragged(((ViewGroup) view.getParent()).indexOfChild(view))) {
+                if (type == DragViewType.PAGE
+                    && draggedViewPager.getPageDragSetting() != null
+                    && !draggedViewPager.getPageDragSetting().canBeDragged(((ViewGroup) view.getParent()).indexOfChild(view))) {
                     return true;
                 }
                 view.startDrag(null, new CustomDragShadowBuilder(view, dragTouchX, dragTouchY), new DragState(view, type), 0);
@@ -307,7 +309,8 @@ public class DragUtils {
      * @param insertPosition 插入位置
      * @param listener       事件回调
      */
-    private static void moveItemView(DragState dragState, MDA_PageListLayout layoutInserted, int insertPosition, MDA_DraggedViewPagerListener listener) {
+    private static void moveItemView(DragState dragState, MDA_PageListLayout layoutInserted, int insertPosition,
+        MDA_DraggedViewPagerListener listener) {
         MDA_PageListLayout layoutRemoved = (MDA_PageListLayout) dragState.view.getParent();
 
         int oldItemIndex = dragState.index;
@@ -332,9 +335,7 @@ public class DragUtils {
         dragState.view.setTag(layoutInserted.getPageIndex());
 
         //事件回调
-        if (listener != null) {
-            listener.onItemMoved(layoutRemoved.getPageIndex(), oldItemIndex, layoutInserted.getPageIndex(), insertPosition);
-        }
+        listener.onItemMoved(layoutRemoved.getPageIndex(), oldItemIndex, layoutInserted.getPageIndex(), insertPosition);
     }
 
     /**
@@ -346,10 +347,12 @@ public class DragUtils {
      * @param listener  事件回调
      */
     private static void swapPageViews(ViewGroup viewGroup, int index,
-                                      DragState dragState, MDA_DraggedViewPagerListener listener) {
+        DragState dragState, MDA_DraggedViewPagerListener listener) {
         //交换页面索引
-        final MDA_PageListLayout pageListLayout = (MDA_PageListLayout) ((ViewGroup) viewGroup.getChildAt(index).findViewById(R.id.dvp_scroll_view)).getChildAt(0);
-        MDA_PageListLayout dragPageListLayout = (MDA_PageListLayout) ((ViewGroup) dragState.view.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+        final MDA_PageListLayout pageListLayout =
+            (MDA_PageListLayout) ((ViewGroup) viewGroup.getChildAt(index).findViewById(R.id.dvp_scroll_view)).getChildAt(0);
+        MDA_PageListLayout dragPageListLayout =
+            (MDA_PageListLayout) ((ViewGroup) dragState.view.findViewById(R.id.dvp_scroll_view)).getChildAt(0);
         int pageIndex = pageListLayout.getPageIndex();
         int dragPageIndex = dragPageListLayout.getPageIndex();
         pageListLayout.setPageIndex(dragPageIndex);
@@ -372,8 +375,8 @@ public class DragUtils {
             @Override
             public void run() {
                 ObjectAnimator animator = ObjectAnimator
-                        .ofFloat(view, View.X, viewX, view.getLeft())
-                        .setDuration(DragUtils.getDuration(view));
+                    .ofFloat(view, View.X, viewX, view.getLeft())
+                    .setDuration(DragUtils.getDuration(view));
                 animator.setInterpolator(new AccelerateDecelerateInterpolator());
                 animator.addListener(new Animator.AnimatorListener() {
                     @Override
@@ -404,9 +407,7 @@ public class DragUtils {
         dragState.index = index;
 
         //事件回调
-        if (listener != null) {
-            listener.onPageSwapped(dragPageIndex, pageIndex);
-        }
+        listener.onPageSwapped(dragPageIndex, pageIndex);
     }
 
     /**
@@ -419,16 +420,19 @@ public class DragUtils {
      * @param event            拖拽事件
      * @return 拖拽事件类型
      */
-    public static DragEventType getDragEventType(MDA_DraggedViewPager draggedViewPager, int currentPageIndex, int pageIndex, View view, DragEvent event) {
+    public static DragEventType getDragEventType(MDA_DraggedViewPager draggedViewPager, int currentPageIndex, int pageIndex,
+        View view, DragEvent event) {
         if (currentPageIndex > 0//有上一页
-                && (draggedViewPager.getPageDragSetting().canBeSwiped(currentPageIndex - 1))//上一页可被交换
-                //触摸至上一页//或至触摸至当前页左边界，则切换到上一页
-                && (pageIndex < currentPageIndex || (pageIndex == currentPageIndex && event.getX() < view.getWidth() / 8))) {
+            && (draggedViewPager.getPageDragSetting() == null || draggedViewPager.getPageDragSetting()
+            .canBeSwiped(currentPageIndex - 1))//上一页可被交换
+            //触摸至上一页//或至触摸至当前页左边界，则切换到上一页
+            && (pageIndex < currentPageIndex || (pageIndex == currentPageIndex && event.getX() < view.getWidth() / 8))) {
             return DragEventType.SCROLL_PREVIOUS;
         } else if (currentPageIndex < (draggedViewPager.getContainer().getChildCount() - 1)//在有下一页的前提下
-                && (draggedViewPager.getPageDragSetting().canBeSwiped(currentPageIndex + 1))//下一页可被交换
-                //触摸至下一页//或至触摸至当前页右边界，则切换到下一页
-                && (pageIndex > currentPageIndex || (pageIndex == currentPageIndex && event.getX() > view.getWidth() / 8 * 7))) {
+            && (draggedViewPager.getPageDragSetting() == null || draggedViewPager.getPageDragSetting()
+            .canBeSwiped(currentPageIndex + 1))//下一页可被交换
+            //触摸至下一页//或至触摸至当前页右边界，则切换到下一页
+            && (pageIndex > currentPageIndex || (pageIndex == currentPageIndex && event.getX() > view.getWidth() / 8 * 7))) {
             return DragEventType.SCROLL_NEXT;
         }
         return DragEventType.DEFAULT;
