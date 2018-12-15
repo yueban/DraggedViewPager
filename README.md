@@ -1,4 +1,8 @@
-# DraggedViewPager
+# (Deprecated) DraggedViewPager
+## Deprecated
+The project has been deprecared. Use [DragListView](https://github.com/woxblom/DragListView) instead, [woxblom](https://github.com/woxblom) has been working on it for serveral years and always reply issues in time.
+
+---
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-DraggedViewPager-green.svg?style=flat)](https://android-arsenal.com/details/1/2164)
 
 A View whose pages and items both can be dragged, looking like a ViewPager
